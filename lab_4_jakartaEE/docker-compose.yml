@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pswrd
+    ports:
+      - "5432:5432" #всегда такой порт у бдышек(конкретный постгрес)
+
+#    volumes:
+#      - .nginx/nginx.conf:/etc/nginx/nginx.conf
+#      - ./front/src:/usr/share/nginx
