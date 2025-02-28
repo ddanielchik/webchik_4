@@ -7,29 +7,18 @@ import org.example.lab_4_jakartaee.entity.User;
 import javax.swing.text.html.parser.Entity;
 import java.sql.SQLOutput;
 
-public class UserDAO extends AbstractEntityDAO{
+public class UserDAO extends AbstractEntityDAO<User> {
     // методы сохранения пользователей, нахождения по  имени, проверка совпадения паролей
     // тут можнот наверное реализовать "ваш парол слишком леккий, в пень идите))"
     // метод сохр пользователей
-     public UserDAO() {}
-    @Override
-    public void save(Object entity) {
-        super.getEm().getTransaction().begin();
-       // em.persist() — сохраняет сущность в базе данных. кароч добавляем данные в табличку))
-        super.getEm().persist(entity);
-        super.getEm().getTransaction().commit();
-
-
-
+    public UserDAO() {
     }
 
-    @Override
-    public void find(Object entity) {
+    public void save(User user) {
+        var em = getEm();
 
-    }
-
-    @Override
-    public void delete(Object entity) {
-
+        em.getTransaction().begin();
+        em.persist(user);
+        em.getTransaction().commit();
     }
 }

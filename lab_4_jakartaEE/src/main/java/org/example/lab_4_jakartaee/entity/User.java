@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.regex.*;
+
 @Entity //делаем класс табличкой для бдшки
 @Table(name = "USER_TABLE")
-
 public class User {
     @Id // задает примири ку
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,7 @@ public class User {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -37,12 +38,13 @@ public class User {
             throw new IllegalArgumentException("Пароль должен содержать хотя бы 4 буквы, одну цифру и один спец. символ.");
         }
     }
+
     public boolean chekPassword(String password) {
         return BCrypt.checkpw(password, this.password);
     }
 
 
-    public boolean isPasswordValid(String password) {
+    public static boolean isPasswordValid(String password) {
         if (password == null || password.isEmpty()) {
             throw new IllegalArgumentException("Дурачек совсем, наивный.. Пустую строку решил мне отправить");
         }
