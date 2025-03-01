@@ -1,12 +1,9 @@
 package org.example.lab_4_jakartaee.managerDB;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.example.lab_4_jakartaee.entity.User;
 
-import javax.swing.text.html.parser.Entity;
-import java.sql.SQLOutput;
-
+@ApplicationScoped
 public class UserDAO extends AbstractEntityDAO<User> {
     // методы сохранения пользователей, нахождения по  имени, проверка совпадения паролей
     // тут можнот наверное реализовать "ваш парол слишком леккий, в пень идите))"
@@ -16,9 +13,25 @@ public class UserDAO extends AbstractEntityDAO<User> {
 
     public void save(User user) {
         var em = getEm();
-
         em.getTransaction().begin();
         em.persist(user);
         em.getTransaction().commit();
     }
+
+    public User findByUsername(String username) {
+        var em = getEm();
+        em.getTransaction().begin();
+        User user = em.find(User.class, username);
+        em.getTransaction().commit();
+        return user;
+    }
+
+    public boolean existsByUsername(String username) {
+        var em = getEm();
+        em.getTransaction().begin();
+        User user = em.find(User.class, username);
+        em.getTransaction().commit();
+        return user != null;
+    }
+
 }

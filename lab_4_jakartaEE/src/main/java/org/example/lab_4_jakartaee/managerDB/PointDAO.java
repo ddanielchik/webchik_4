@@ -11,4 +11,9 @@ public class PointDAO extends AbstractEntityDAO<Point> {
         em.persist(point);
         em.getTransaction().commit();
     }
+
+    public Point getPointByUsername(String username) {
+        var em = getEm();
+        return em.find(Point.class, username);
+    }
 }
