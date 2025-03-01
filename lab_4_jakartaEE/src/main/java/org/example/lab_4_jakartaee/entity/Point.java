@@ -10,7 +10,7 @@ public class Point {
     @Id // PK~~
     @GeneratedValue(strategy = GenerationType.IDENTITY) // увеличивается на +1 ну бдшка и прочее))
 
-    private long id;
+    private Long id;
     private float x;
     private float y;
     private float razmer;

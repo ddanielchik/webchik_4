@@ -9,7 +9,7 @@ import org.example.lab_4_jakartaee.managerDB.UserDAO;
 public class UserService {
 
     @Inject
-    private UserDAO userDAO;
+    private UserDAO userDAO = new UserDAO();
 
     public boolean exists(String username) {
         return userDAO.existsByUsername(username);
@@ -24,6 +24,16 @@ public class UserService {
         userDAO.save(user);
         return user;
     }
+
+    public User login(String username, String password) {
+        User user = userDAO.findByUsername(username);
+        if (user == null) throw new IllegalArgumentException("username not found");
+        //если паррль не совпал=дает
+        if (!userDAO.authenticate(user.getUsername(), password)) throw new IllegalArgumentException("" +
+                "password incorrect u lose)) ");
+        return user;
+    }
+
 
 //    public void logout(HttpServletRequest request) {
 //        HttpServletRequest.log

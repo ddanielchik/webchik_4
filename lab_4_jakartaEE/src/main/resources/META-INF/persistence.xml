@@ -9,9 +9,9 @@
         <class>org.example.lab_4_jakartaee.entity.Point</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/lab4"/>
-            <property name="jakarta.persistence.jdbc.user" value="lab4"/>
-            <property name="jakarta.persistence.jdbc.password" value="lab4"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+            <property name="jakarta.persistence.jdbc.user" value="user"/>
+            <property name="jakarta.persistence.jdbc.password" value="pswrd"/>
             <property name="eclipselink.logging.level" value="FINE"/>
             <property name="eclipselink.logging.level.sql" value="FINE"/>
             <property name="eclipselink.ddl-generation" value="create-tables"/>

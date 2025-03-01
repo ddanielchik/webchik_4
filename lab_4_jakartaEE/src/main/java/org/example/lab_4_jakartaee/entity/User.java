@@ -10,15 +10,15 @@ import java.util.regex.*;
 public class User {
     @Id // задает примири ку
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String username;
     private String password;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -32,11 +32,11 @@ public class User {
 
 
     public void setPassword(String password) {
-        if (isPasswordValid(password)) {
+//        if (isPasswordValid(password)) {
             this.password = BCrypt.hashpw(password, BCrypt.gensalt());
-        } else {
-            throw new IllegalArgumentException("Пароль должен содержать хотя бы 4 буквы, одну цифру и один спец. символ.");
-        }
+//        } else {
+//            throw new IllegalArgumentException("Пароль должен содержать хотя бы 4 буквы, одну цифру и один спец. символ.");
+//        }
     }
 
     public boolean chekPassword(String password) {
@@ -48,10 +48,13 @@ public class User {
         if (password == null || password.isEmpty()) {
             throw new IllegalArgumentException("Дурачек совсем, наивный.. Пустую строку решил мне отправить");
         }
-        String regex = "^(?=.*[a-zA-Z].*[a-zA-Z].*[a-zA-Z].*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).*$";
+//        String regex = "^(?=.*[a-zA-Z].*[a-zA-Z].*[a-zA-Z].*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).*$";
+        String regex = "^(?=(.*[a-zA-Z]){4,})(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{6,}$";
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
+        //если совпадения мяу мяу мяу
+        if (!matcher.matches()) throw new IllegalArgumentException("Пароль должен содержать хотя бы 4 буквы, одну цифру и один спец. символ.");
 
         // Проверяем, соответствует ли пароль регулярному выражению
         return matcher.matches();
