@@ -2,6 +2,7 @@ package org.example.lab_4_jakartaee.controllers;
 
 import jakarta.ejb.EJB;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -10,7 +11,7 @@ import org.example.lab_4_jakartaee.entity.User;
 import org.example.lab_4_jakartaee.service.UserService;
 import org.example.lab_4_jakartaee.util.JwtUtil;
 
-@Path("/user")
+@ApplicationPath("/user")
 public class UserController {
     @EJB
     UserService userService;

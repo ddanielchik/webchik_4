@@ -9,7 +9,7 @@ import org.example.lab_4_jakartaee.managerDB.UserDAO;
 public class UserService {
 
     @Inject
-    private UserDAO userDAO = new UserDAO();
+    private UserDAO userDAO;
 
     public boolean exists(String username) {
         return userDAO.existsByUsername(username);

@@ -2,6 +2,7 @@
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/controllers/UserController.java
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/entity/Point.java
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/entity/User.java
+/Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/filter/CORSFilter.java
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/managerDB/AbstractEntityDAO.java
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/managerDB/PointDAO.java
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/managerDB/UserDAO.java
