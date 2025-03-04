@@ -15,7 +15,7 @@ const authSlice = createSlice(
         initialState,
         reducers:{
             setLogin: (state, action)=> {
-                state.login=action.payload
+                state.login=action.payload // присв логину новое значение кот пришло в  payload
             },
             setPassword: (state, action)=> {
                 state.password=action.payload
@@ -34,3 +34,12 @@ const authSlice = createSlice(
         }
     }
 )
+export const selectLogin = (state) => (state.auth.login)
+export const selectPassword = (state) => (state.auth.password)
+export const selectRepeatedPassword = (state) => (state.auth.repeatedPassword)
+export const selectIsLogin = (state) => (state.auth.isLogin)
+export const selectErrorMessage = (state) => (state.auth.errorMessage)
+
+export const {setLogin, setPassword, setRepeatedPassword, setToLogin, setErrorMessage} = authSlice.actions
+
+export default authSlice.reducer
