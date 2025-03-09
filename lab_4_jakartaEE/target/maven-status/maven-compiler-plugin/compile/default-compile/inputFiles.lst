@@ -7,4 +7,4 @@
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/managerDB/PointDAO.java
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/managerDB/UserDAO.java
 /Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/service/UserService.java
-/Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/util/JwtUtil.java
+/Users/ddanielchik/Desktop/lab_4/lab_4_jakartaEE/src/main/java/org/example/lab_4_jakartaee/utils/JwtUtil.java

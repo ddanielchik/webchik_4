@@ -1,5 +1,6 @@
 org/example/lab_4_jakartaee/entity/Point.class
 org/example/lab_4_jakartaee/controllers/UserController$UserCredentials.class
+org/example/lab_4_jakartaee/utils/JwtUtil.class
 org/example/lab_4_jakartaee/service/UserService.class
 org/example/lab_4_jakartaee/controllers/UserController$RefreshRequest.class
 org/example/lab_4_jakartaee/controllers/UserController.class
@@ -10,4 +11,3 @@ org/example/lab_4_jakartaee/managerDB/PointDAO.class
 org/example/lab_4_jakartaee/filter/CORSFilter.class
 org/example/lab_4_jakartaee/controllers/UserController$ValidationResponse.class
 org/example/lab_4_jakartaee/controllers/UserController$TokenResponse.class
-org/example/lab_4_jakartaee/util/JwtUtil.class

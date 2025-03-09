@@ -2,17 +2,16 @@ package org.example.lab_4_jakartaee.controllers;
 
 import jakarta.ejb.EJB;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.ApplicationPath;
-import jakarta.ws.rs.FormParam;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.example.lab_4_jakartaee.entity.User;
 import org.example.lab_4_jakartaee.service.UserService;
-import org.example.lab_4_jakartaee.util.JwtUtil;
+import org.example.lab_4_jakartaee.utils.JwtUtil;
 
-@ApplicationPath("/user")
+@Path("/user")  
 public class UserController {
+
     @EJB
     UserService userService;
 
@@ -21,23 +20,25 @@ public class UserController {
 
     @POST
     @Path("/register")
-    public Response register(
-            @FormParam("username") String name,
-            @FormParam("password") String password
-    ) {
-        if (userService.exists(name))
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response register(UserCredentials credentials) {
+        if (userService.exists(credentials.getUsername())) {
             return Response.status(Response.Status.CONFLICT).build();
-        User user = userService.register(name, password);
+        }
+        User user = userService.register(credentials.getUsername(), credentials.getPassword());
         return Response.ok(user).build();
     }
 
-
     @POST
     @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response login(UserCredentials credentials) {
         String token = jwtUtil.generateToken(credentials.getUsername());
         String refreshToken = jwtUtil.generateRefreshToken(credentials.getUsername());
-        return Response.ok(new TokenResponse(token, refreshToken)).build();
+        TokenResponse tokenResponse = new TokenResponse(token, refreshToken);
+        return Response.ok(tokenResponse).build();
     }
 
     @POST
@@ -53,9 +54,36 @@ public class UserController {
         }
     }
 
+    // Обработчик OPTIONS запроса для /login маршрута, для поддержки CORS
+    @OPTIONS
+    @Path("/login")
+    public Response optionsLogin() {
+        return Response.ok()
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+                .build();
+    }
+    @OPTIONS
+    @Path("/register")
+    public Response optionsRegister() {
+        return Response.ok()
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+                .build();
+    }
+
+
+
     public static class UserCredentials {
         private String username;
         private String password;
+
+        public UserCredentials(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
 
         public String getUsername() {
             return username;
@@ -63,6 +91,14 @@ public class UserController {
 
         public void setUsername(String username) {
             this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
         }
     }
 
@@ -90,7 +126,6 @@ public class UserController {
         public void setRefreshToken(String refreshToken) {
             this.refreshToken = refreshToken;
         }
-
     }
 
     public static class ValidationResponse {
@@ -106,18 +141,14 @@ public class UserController {
     }
 
     public static class RefreshRequest {
-
         private final String refreshToken;
 
-        public RefreshRequest(String refreshToken){
+        public RefreshRequest(String refreshToken) {
             this.refreshToken = refreshToken;
         }
 
         public String getRefreshToken() {
             return refreshToken;
         }
-
     }
-
-
 }
